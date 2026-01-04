@@ -1,0 +1,111 @@
+.table-container {
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .data-table thead {
+    background-color: var(--surface-hover);
+    border-bottom: 1px solid var(--border);
+  }
+  
+  .data-table th {
+    padding: 16px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 13px;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    letter-spacing: 0.5px;
+  }
+  
+  .data-table td {
+    padding: 16px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-primary);
+  }
+  
+  .data-table tbody tr:hover {
+    background-color: var(--surface-hover);
+  }
+  
+  .data-table tbody tr:last-child td {
+    border-bottom: none;
+  }
+  
+  .empty-state {
+    text-align: center;
+    color: var(--text-secondary);
+    padding: 40px 16px;
+  }
+  
+  .actions-cell {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+  
+  .action-btn {
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background-color: transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+  }
+  
+  .action-btn:hover {
+    background-color: var(--primary);
+    border-color: var(--primary);
+    color: white;
+  }
+  
+  .action-btn.danger {
+    color: var(--danger);
+    border-color: var(--danger);
+  }
+  
+  .action-btn.danger:hover {
+    background-color: var(--danger);
+    color: white;
+  }
+  
+  .status-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: capitalize;
+  }
+  
+  .status-active {
+    background-color: rgba(16, 185, 129, 0.1);
+    color: var(--success);
+  }
+  
+  .status-pending {
+    background-color: rgba(245, 158, 11, 0.1);
+    color: var(--warning);
+  }
+  
+  .status-completed {
+    background-color: rgba(59, 130, 246, 0.1);
+    color: var(--info);
+  }
+  
+  .status-failed {
+    background-color: rgba(239, 68, 68, 0.1);
+    color: var(--danger);
+  }
+  

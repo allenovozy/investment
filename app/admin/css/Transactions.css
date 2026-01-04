@@ -1,0 +1,108 @@
+.transactions-page {
+  animation: fadeIn 0.3s ease;
+  padding: 20px;
+}
+
+.table-wrapper {
+  background-color: var(--surface);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* Table base */
+.table-wrapper table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+/* Table header */
+.table-wrapper th {
+  background-color: var(--primary-light, #f5f5f5);
+  color: var(--text-primary, #333);
+  text-align: left;
+  padding: 12px 16px;
+  font-weight: 600;
+  border-bottom: 2px solid #ddd;
+}
+
+/* Table cells */
+.table-wrapper td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #eee;
+  color: var(--text-secondary, #555);
+}
+
+/* Zebra striping */
+.table-wrapper tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+/* Hover effect */
+.table-wrapper tr:hover {
+  background-color: #f0f8ff;
+}
+
+/* Actions column */
+.table-wrapper .actions {
+  display: flex;
+  gap: 8px;
+}
+
+.table-wrapper .actions .btn-action {
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-size: 13px;
+  cursor: pointer;
+  border: none;
+}
+.table-wrapper table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.table-wrapper th,
+.table-wrapper td {
+  padding: 12px 16px;   /* spacing inside cells */
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.table-wrapper th {
+  background-color: #f5f5f5;
+  font-weight: 600;
+}
+
+.table-wrapper tr:nth-child(even) {
+  background-color: #fafafa; /* zebra striping */
+}
+
+.table-wrapper tr:hover {
+  background-color: #f0f8ff; /* hover highlight */
+}
+
+/* Status badge styling */
+.status-badge {
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.status-badge.status-successful {
+  background: #28a745;
+  color: #fff;
+}
+
+.status-badge.status-pending {
+  background: #ffc107;
+  color: #212529;
+}
+
+.status-badge.status-failed {
+  background: #dc3545;
+  color: #fff;
+}

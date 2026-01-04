@@ -1,0 +1,213 @@
+.referrals-page {
+    animation: fadeIn 0.3s ease;
+  }
+  
+  .referrals-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 20px;
+  }
+  
+  .referral-card {
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+  
+  .referral-card:hover {
+    border-color: var(--primary);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+  }
+  
+  .referral-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  
+  .referral-id {
+    font-weight: 700;
+    color: var(--primary-light);
+    font-size: 16px;
+  }
+  
+  .referral-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  
+  .info-item {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .info-item .label {
+    font-size: 12px;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+  }
+  
+  .info-item .value {
+    font-weight: 600;
+    color: var(--text-primary);
+    word-break: break-word;
+  }
+  
+  .referral-actions {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .referral-actions select {
+    flex: 1;
+    padding: 8px 12px;
+    background-color: var(--surface-hover);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text-primary);
+    font-size: 13px;
+  }
+  
+  .btn-update {
+    padding: 8px 16px;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .btn-update:hover:not(:disabled) {
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+    transform: translateY(-1px);
+  }
+  
+  .btn-update:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
+  .empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--text-secondary);
+  }
+  
+  .loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 400px;
+    color: var(--text-secondary);
+  }
+  
+  @media (max-width: 768px) {
+    .referrals-list {
+      grid-template-columns: 1fr;
+    }
+  
+    .referral-info {
+      grid-template-columns: 1fr;
+    }
+  }
+  .referrals-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 16px;
+    margin-top: 20px;
+  }
+  
+  .referral-card {
+    background: #fff;
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .referral-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+  
+  .referral-id {
+    font-weight: bold;
+    color: #007bff;
+  }
+  
+  .referral-info {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    row-gap: 8px;
+    margin-bottom: 12px;
+  }
+  
+  .info-item .label {
+    font-weight: 600;
+    color: #555;
+  }
+  
+  .info-item .value {
+    color: #333;
+  }
+  
+  .status-badge {
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: capitalize;
+  }
+  
+  .status-badge.status-pending {
+    background: #ffc107;
+    color: #212529;
+  }
+  
+  .status-badge.status-active {
+    background: #28a745;
+    color: #fff;
+  }
+  
+  .status-badge.status-revoked {
+    background: #dc3545;
+    color: #fff;
+  }
+  
+  .referral-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+  }
+  
+  .btn-update {
+    background: #007bff;
+    color: #fff;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .btn-update:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  
