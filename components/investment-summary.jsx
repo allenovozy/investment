@@ -45,7 +45,7 @@ export default function InvestmentSummary({ userId }) {
       return
     }
 
-    fetch("http://185.27.134.59/server/Api/investments.php", {
+    fetch("https://185.27.134.59/server/Api/investments.php", {
       method: "GET",
       credentials: "include",
     })
