@@ -27,11 +27,11 @@ export default function WithdrawPage() {
     const fetchData = async () => {
       try {
         const [userRes, txRes] = await Promise.all([
-          fetch("http://192.168.1.150/server/Api/dashboard.php", {
+          fetch("http://185.27.134.59/server/Api/dashboard.php", {
             method: "GET",
             credentials: "include",
           }),
-          fetch("http://192.168.1.150/server/Api/withdraw.php", {
+          fetch("http://185.27.134.59/server/Api/withdraw.php", {
             method: "GET",
             credentials: "include",
           }),
