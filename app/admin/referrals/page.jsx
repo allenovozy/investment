@@ -31,7 +31,7 @@ const Referrals = () => {
   const handleStatusChange = async (id, status) => {
     setUpdating(id)
     try {
-      const res = await fetch("http://192.168.1.150/server/Api/Admin/referrals/update_status.php", {
+      const res = await fetch("http://185.27.134.59/server/Api/Admin/referrals/update_status.php", {
         method: "POST",
         credentials: "include",
         headers: { "Content-Type": "application/json" },
