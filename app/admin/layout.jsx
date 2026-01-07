@@ -23,7 +23,7 @@ const Layout = ({ children, currentPage }) => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const res = await fetch("http://192.168.1.150/server/Api/Admin/me.php", {
+        const res = await fetch("http://185.27.134.59/server/Api/Admin/me.php", {
           credentials: "include",
         })
         const data = await res.json()
