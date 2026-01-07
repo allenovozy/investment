@@ -23,7 +23,7 @@ export default function InvestmentsPage() {
       useEffect(() => {
         const fetchData = async () => {
           try {
-            const resUser = await fetch("http://185.27.134.59/server/Api/dashboard.php", {
+            const resUser = await fetch("https://185.27.134.59/server/Api/dashboard.php", {
               credentials: "include"
             })
             if (resUser.status === 401) {
@@ -34,7 +34,7 @@ export default function InvestmentsPage() {
             if (!dataUser.success) throw new Error(dataUser.message)
             setUser(dataUser.user)
 
-            const resPlans = await fetch("http://185.27.134.59/server/Api/get_investments.php", {
+            const resPlans = await fetch("https://185.27.134.59/server/Api/get_investments.php", {
               credentials: "include"
             })
             if (resPlans.status === 401) {
