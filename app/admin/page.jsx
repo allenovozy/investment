@@ -13,7 +13,7 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch("http://185.27.134.59/server/Api/Admin/dashboard.php", {
+        const res = await fetch("https://185.27.134.59/server/Api/Admin/dashboard.php", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
