@@ -24,7 +24,7 @@ export default function LeaderboardPage() {
       setLoading(true)
       try {
         const res = await fetch(
-          `http://185.27.134.59/server/Api/get_leaderboard.php?region=${encodeURIComponent(selectedRegion)}`,
+          `https://185.27.134.59/server/Api/get_leaderboard.php?region=${encodeURIComponent(selectedRegion)}`,
           {
             method: "GET",
             credentials: "include",
