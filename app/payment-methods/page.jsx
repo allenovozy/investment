@@ -21,7 +21,7 @@ export default function PaymentMethodsPage() {
   useEffect(() => {
     const loadPaymentMethods = async () => {
       try {
-        const res = await fetch("http://185.27.134.59/server/Api/get_payment_method.php", {
+        const res = await fetch("https://185.27.134.59/server/Api/get_payment_method.php", {
           method: "GET",
           credentials: "include",
         });
@@ -55,7 +55,7 @@ export default function PaymentMethodsPage() {
   const handleAddCard = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch("http://185.27.134.59/server/Api/add_card.php", {
+      const res = await fetch("https://185.27.134.59/server/Api/add_card.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
@@ -86,7 +86,7 @@ export default function PaymentMethodsPage() {
   const handleAddBank = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch("http://185.27.134.59/server/Api/add_bank.php", {
+      const res = await fetch("https://185.27.134.59/server/Api/add_bank.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
