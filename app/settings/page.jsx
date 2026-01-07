@@ -10,7 +10,7 @@ export default function SettingsPage() {
   const [formData, setFormData] = useState({ email: "", phone: "", country: "" })
 
   useEffect(() => {
-    fetch("http://192.168.1.150/server/Api/dashboard.php", {
+    fetch("http://185.27.134.59/server/Api/dashboard.php", {
       method: "GET",
       credentials: "include",
     })
@@ -33,7 +33,7 @@ export default function SettingsPage() {
   }
 
   const handleSave = () => {
-    fetch("http://192.168.1.150/server/Api/settings.php", {
+    fetch("http://185.27.134.59/server/Api/settings.php", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       credentials: "include",
