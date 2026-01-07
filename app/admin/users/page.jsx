@@ -17,7 +17,7 @@ const Users = () => {
 
   const fetchUsers = async () => {
     try {
-      const res = await fetch("http://185.27.134.59/server/Api/Admin/users/list.php", {
+      const res = await fetch("https://185.27.134.59/server/Api/Admin/users/list.php", {
         credentials: "include",
       })
       const data = await res.json()
@@ -32,7 +32,7 @@ const Users = () => {
   const handleAdjustBalance = async (e) => {
     e.preventDefault()
     try {
-      const res = await fetch("http://185.27.134.59/server/Api/Admin/users/update_balance.php", {
+      const res = await fetch("https://185.27.134.59/server/Api/Admin/users/update_balance.php", {
         method: "POST",
         credentials: "include",
         headers: { "Content-Type": "application/json" },
@@ -58,7 +58,7 @@ const Users = () => {
   const handleDeleteUser = async (id) => {
     if (!window.confirm("Are you sure you want to delete this user?")) return
     try {
-      const res = await fetch("http://185.27.134.59/server/Api/Admin/users/delete.php", {
+      const res = await fetch("https://185.27.134.59/server/Api/Admin/users/delete.php", {
         method: "POST",
         credentials: "include",
         headers: { "Content-Type": "application/json" },
@@ -77,7 +77,7 @@ const Users = () => {
 
   const handleViewUser = async (user) => {
     try {
-      const res = await fetch(`http://185.27.134.59/server/Api/Admin/users/activity.php?id=${user.id}`, {
+      const res = await fetch(`https://185.27.134.59/server/Api/Admin/users/activity.php?id=${user.id}`, {
         credentials: "include",
       })
       const data = await res.json()
@@ -99,7 +99,7 @@ const openEditModal = (user) => {
 const handleEditSubmit = async (e) => {
   e.preventDefault()
   try {
-    const res = await fetch("http://185.27.134.59/server/Api/Admin/users/edit.php", {
+    const res = await fetch("https://185.27.134.59/server/Api/Admin/users/edit.php", {
       method: "POST",
       credentials: "include",
       headers: { "Content-Type": "application/json" },
