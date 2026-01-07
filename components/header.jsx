@@ -30,7 +30,7 @@ export default function Header() {
   const langRef = useRef(null);
 
   useEffect(() => {
-    fetch("http://192.168.1.150/server/Api/dashboard.php", {
+    fetch("https://192.168.1.150/server/Api/dashboard.php", {
       method: "GET",
       credentials: "include",
     })
@@ -42,7 +42,7 @@ export default function Header() {
   }, []);
 
   useEffect(() => {
-    fetch("http://192.168.1.150/server/Api/get_notifications.php", {
+    fetch("https://192.168.1.150/server/Api/get_notifications.php", {
       method: "GET",
       credentials: "include",
     })
