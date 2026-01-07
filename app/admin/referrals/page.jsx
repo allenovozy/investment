@@ -16,7 +16,7 @@ const Referrals = () => {
 
   const fetchReferrals = async () => {
     try {
-      const res = await fetch("http://185.27.134.59/server/Api/Admin/referrals/list.php", {
+      const res = await fetch("https://185.27.134.59/server/Api/Admin/referrals/list.php", {
         credentials: "include",
       })
       const data = await res.json()
@@ -31,7 +31,7 @@ const Referrals = () => {
   const handleStatusChange = async (id, status) => {
     setUpdating(id)
     try {
-      const res = await fetch("http://185.27.134.59/server/Api/Admin/referrals/update_status.php", {
+      const res = await fetch("https://185.27.134.59/server/Api/Admin/referrals/update_status.php", {
         method: "POST",
         credentials: "include",
         headers: { "Content-Type": "application/json" },
