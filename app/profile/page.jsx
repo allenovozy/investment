@@ -9,7 +9,7 @@ export default function ProfilePage() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    fetch("http://192.168.1.150/server/Api/dashboard.php", {
+    fetch("http://185.27.134.59/server/Api/dashboard.php", {
       method: "GET",
       credentials: "include",
     })
