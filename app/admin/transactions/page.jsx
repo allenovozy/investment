@@ -15,7 +15,7 @@ const Transactions = () => {
 
   const fetchTransactions = async () => {
     try {
-      const res = await fetch("http://185.27.134.59/server/Api/Admin/transactions/list.php", {
+      const res = await fetch("https://185.27.134.59/server/Api/Admin/transactions/list.php", {
         credentials: "include",
       })
       const data = await res.json()
