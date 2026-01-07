@@ -12,7 +12,7 @@ export default function ReferralPage() {
   useEffect(() => {
     // Fetch user info
     const fetchUser = async () => {
-      const res = await fetch("http://185.27.134.59/server/Api/get_user.php", {
+      const res = await fetch("https://185.27.134.59/server/Api/get_user.php", {
         method: "GET",
         credentials: "include",
       })
@@ -22,7 +22,7 @@ export default function ReferralPage() {
 
     // Fetch referral stats
     const fetchStats = async () => {
-      const res = await fetch("http://185.27.134.59/server/Api/get_referrals_stats.php", {
+      const res = await fetch("https://185.27.134.59/server/Api/get_referrals_stats.php", {
         method: "GET",
         credentials: "include",
       })
