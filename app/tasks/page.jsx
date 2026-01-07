@@ -11,7 +11,7 @@ export default function TasksPage() {
 
   // Fetch user and tasks
   const fetchUser = async () => {
-    const res = await fetch("http://192.168.1.150/server/Api/dashboard.php", {
+    const res = await fetch("http://185.27.134.59/server/Api/dashboard.php", {
       credentials: "include",
     })
     const data = await res.json()
@@ -19,7 +19,7 @@ export default function TasksPage() {
   }
 
   const fetchTasks = async () => {
-    const res = await fetch("http://192.168.1.150/server/Api/tasks.php", {
+    const res = await fetch("http://185.27.134.59/server/Api/tasks.php", {
       credentials: "include",
     })
     const data = await res.json()
