@@ -39,7 +39,7 @@ export default function SignupPage() {
     }
 
     try {
-      const res = await fetch("http://185.27.134.59/server/Api/signup.php", {
+      const res = await fetch("https://185.27.134.59/server/Api/signup.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
