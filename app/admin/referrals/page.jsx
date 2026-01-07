@@ -16,7 +16,7 @@ const Referrals = () => {
 
   const fetchReferrals = async () => {
     try {
-      const res = await fetch("http://192.168.1.150/server/Api/Admin/referrals/list.php", {
+      const res = await fetch("http://185.27.134.59/server/Api/Admin/referrals/list.php", {
         credentials: "include",
       })
       const data = await res.json()
