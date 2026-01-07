@@ -16,7 +16,7 @@ const Tasks = () => {
 
   const fetchTasks = async () => {
     try {
-      const res = await fetch("http://185.27.134.59/server/Api/Admin/tasks/list.php", {
+      const res = await fetch("https://185.27.134.59/server/Api/Admin/tasks/list.php", {
         credentials: "include",
       })
       const data = await res.json()
@@ -34,7 +34,7 @@ const Tasks = () => {
     const body = editing ? { ...form, id: editing } : form
 
     try {
-      const res = await fetch(`http://185.27.134.59/server/Api/Admin/tasks/${url}`, {
+      const res = await fetch(`https://185.27.134.59/server/Api/Admin/tasks/${url}`, {
         method: "POST",
         credentials: "include",
         headers: { "Content-Type": "application/json" },
@@ -58,7 +58,7 @@ const Tasks = () => {
     if (!window.confirm("Are you sure?")) return
 
     try {
-      const res = await fetch("http://185.27.134.59/server/Api/Admin/tasks/delete.php", {
+      const res = await fetch("https://185.27.134.59/server/Api/Admin/tasks/delete.php", {
         method: "POST",
         credentials: "include",
         headers: { "Content-Type": "application/json" },
