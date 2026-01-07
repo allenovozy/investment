@@ -34,7 +34,7 @@ export default function NotificationsPage() {
   useEffect(() => {
     const loadData = async () => {
       try {
-        const userRes = await fetch("http://185.27.134.59/server/Api/get_user.php", {
+        const userRes = await fetch("https://185.27.134.59/server/Api/get_user.php", {
           credentials: "include",
         })
         if (userRes.status === 401) {
@@ -48,7 +48,7 @@ export default function NotificationsPage() {
         }
         setUser(userData.user)
 
-        const notifRes = await fetch("http://185.27.134.59/server/Api/get_notifications.php", {
+        const notifRes = await fetch("https://185.27.134.59/server/Api/get_notifications.php", {
           credentials: "include",
         })
         if (notifRes.status === 401) {
