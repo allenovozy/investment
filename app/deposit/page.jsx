@@ -20,7 +20,7 @@ export default function DepositPage() {
 
   // ✅ Fetch real user from backend
 useEffect(() => {
-  fetch("http://192.168.1.150/server/Api/get_user.php", {
+  fetch("http://185.27.134.59/server/Api/get_user.php", {
     credentials: "include",
   })
     .then(res => {
@@ -55,7 +55,7 @@ useEffect(() => {
 
     setLoading(true)
     try {
-      const res = await fetch("http://192.168.1.150/server/Api/deposit.php", {
+      const res = await fetch("http://185.27.134.59/server/Api/deposit.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
