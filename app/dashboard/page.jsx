@@ -20,11 +20,11 @@ export default function Dashboard() {
     const fetchData = async () => {
       try {
         const [userRes, txRes] = await Promise.all([
-          fetch("https://185.27.134.59/server/Api/dashboard.php", {
+          fetch("https://72.60.93.14/server/Api/dashboard.php", {
             method: "GET",
             credentials: "include",
           }),
-          fetch(`https://185.27.134.59/server/Api/transactions.php?page=${page}`, {
+          fetch(`https://72.60.93.14/server/Api/transactions.php?page=${page}`, {
             method: "GET",
             credentials: "include",
           }),
