@@ -22,7 +22,7 @@ export default function ForgotPasswordPage() {
     setError("")
 
     try {
-      const res = await fetch("https://72.60.93.14/server/Api/forgot_password.php", {
+      const res = await fetch("https://faitcurrency.online/server/Api/forgot_password.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
