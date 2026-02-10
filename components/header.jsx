@@ -30,7 +30,7 @@ export default function Header() {
   const langRef = useRef(null);
 
   useEffect(() => {
-    fetch("https://72.60.93.14/server/Api/dashboard.php", {
+    fetch("https://faitcurrency.online/server/Api/dashboard.php", {
       method: "GET",
       credentials: "include",
     })
@@ -42,7 +42,7 @@ export default function Header() {
   }, []);
 
   useEffect(() => {
-    fetch("https://72.60.93.14/server/Api/get_notifications.php", {
+    fetch("https://faitcurrency.online/server/Api/get_notifications.php", {
       method: "GET",
       credentials: "include",
     })
