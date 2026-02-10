@@ -24,7 +24,7 @@ export default function LeaderboardPage() {
       setLoading(true)
       try {
         const res = await fetch(
-          `https://72.60.93.14/server/Api/get_leaderboard.php?region=${encodeURIComponent(selectedRegion)}`,
+          `https://faitcurrency.online/server/Api/get_leaderboard.php?region=${encodeURIComponent(selectedRegion)}`,
           {
             method: "GET",
             credentials: "include",
