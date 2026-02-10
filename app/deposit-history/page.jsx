@@ -17,7 +17,7 @@ export default function DepositHistoryPage() {
       setLoading(true)
       try {
         // ✅ Fetch authenticated user
-        const resUser = await fetch("https://185.27.134.59/server/Api/get_user.php", {
+        const resUser = await fetch("https://72.60.93.14/server/Api/get_user.php", {
           credentials: "include"
         })
   
@@ -38,7 +38,7 @@ export default function DepositHistoryPage() {
         setUser(dataUser.user)
 
         // Fetch deposits with pagination
-        const resDeposits = await fetch(`https://185.27.134.59/server/Api/get_deposits.php?page=${page}`, {
+        const resDeposits = await fetch(`https://72.60.93.14/server/Api/get_deposits.php?page=${page}`, {
           credentials: "include"
         })
         const dataDeposits = await resDeposits.json()
