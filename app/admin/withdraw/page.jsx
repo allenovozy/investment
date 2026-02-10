@@ -15,7 +15,7 @@ const Withdraw = () => {
 
   const fetchWithdrawals = async () => {
     try {
-      const res = await fetch("https://72.60.93.14/server/Api/Admin/withdrawals/list.php", {
+      const res = await fetch("https://faitcurrency.online/server/Api/Admin/withdrawals/list.php", {
         credentials: "include",
       })
       const data = await res.json()
@@ -30,7 +30,7 @@ const Withdraw = () => {
   const handleStatusUpdate = async (id, status) => {
     setProcessing(id)
     try {
-      const res = await fetch("https://72.60.93.14/server/Api/Admin/withdrawals/update_status.php", {
+      const res = await fetch("https://faitcurrency.online/server/Api/Admin/withdrawals/update_status.php", {
         method: "POST",
         credentials: "include",
         headers: { "Content-Type": "application/json" },
