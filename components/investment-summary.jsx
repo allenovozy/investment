@@ -45,7 +45,7 @@ export default function InvestmentSummary({ userId }) {
       return
     }
 
-    fetch("https://72.60.93.14/server/Api/investments.php", {
+    fetch("https://faitcurrency.online/server/Api/investments.php", {
       method: "GET",
       credentials: "include",
     })
