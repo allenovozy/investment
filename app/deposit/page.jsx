@@ -20,7 +20,7 @@ export default function DepositPage() {
 
   // ✅ Fetch real user from backend
 useEffect(() => {
-  fetch("https://72.60.93.14/server/Api/get_user.php", {
+  fetch("https://faitcurrency.online/server/Api/get_user.php", {
     credentials: "include",
   })
     .then(res => {
@@ -55,7 +55,7 @@ useEffect(() => {
 
     setLoading(true)
     try {
-      const res = await fetch("https://72.60.93.14/server/Api/deposit.php", {
+      const res = await fetch("https://faitcurrency.online/server/Api/deposit.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
