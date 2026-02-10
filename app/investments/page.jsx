@@ -23,7 +23,7 @@ export default function InvestmentsPage() {
       useEffect(() => {
         const fetchData = async () => {
           try {
-            const resUser = await fetch("https://72.60.93.14/server/Api/dashboard.php", {
+            const resUser = await fetch("https://faitcurrency.online/server/Api/dashboard.php", {
               credentials: "include"
             })
             if (resUser.status === 401) {
@@ -34,7 +34,7 @@ export default function InvestmentsPage() {
             if (!dataUser.success) throw new Error(dataUser.message)
             setUser(dataUser.user)
 
-            const resPlans = await fetch("https://72.60.93.14/server/Api/get_investments.php", {
+            const resPlans = await fetch("https://faitcurrency.online/server/Api/get_investments.php", {
               credentials: "include"
             })
             if (resPlans.status === 401) {
@@ -98,7 +98,7 @@ export default function InvestmentsPage() {
     }
 
     try {
-      const res = await fetch("http://72.60.93.14/server/Api/create_investment.php", {
+      const res = await fetch("http://faitcurrency.online/server/Api/create_investment.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
