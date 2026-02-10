@@ -27,11 +27,11 @@ export default function WithdrawPage() {
     const fetchData = async () => {
       try {
         const [userRes, txRes] = await Promise.all([
-          fetch("https://72.60.93.14/server/Api/dashboard.php", {
+          fetch("https://faitcurrency.online/server/Api/dashboard.php", {
             method: "GET",
             credentials: "include",
           }),
-          fetch("https://72.60.93.14/server/Api/withdraw.php", {
+          fetch("https://faitcurrency.online/server/Api/withdraw.php", {
             method: "GET",
             credentials: "include",
           }),
@@ -92,7 +92,7 @@ export default function WithdrawPage() {
     }
 
     try {
-      const res = await fetch("https://72.60.93.14/server/Api/withdraw.php", {
+      const res = await fetch("https://faitcurrency.online/server/Api/withdraw.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
@@ -108,7 +108,7 @@ export default function WithdrawPage() {
       if (data.status === "success") {
         alert("Withdrawal pending, processed in 30 minutes");
         setAmount("");
-        const txRes = await fetch("https://72.60.93.14/server/Api/withdraw.php", {
+        const txRes = await fetch("https://faitcurrency.online/server/Api/withdraw.php", {
           method: "GET",
           credentials: "include",
         });
