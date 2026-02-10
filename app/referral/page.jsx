@@ -12,7 +12,7 @@ export default function ReferralPage() {
   useEffect(() => {
     // Fetch user info
     const fetchUser = async () => {
-      const res = await fetch("https://185.27.134.59/server/Api/get_user.php", {
+      const res = await fetch("https://72.60.93.14/server/Api/get_user.php", {
         method: "GET",
         credentials: "include",
       })
@@ -22,7 +22,7 @@ export default function ReferralPage() {
 
     // Fetch referral stats
     const fetchStats = async () => {
-      const res = await fetch("https://185.27.134.59/server/Api/get_referrals_stats.php", {
+      const res = await fetch("https://72.60.93.14/server/Api/get_referrals_stats.php", {
         method: "GET",
         credentials: "include",
       })
@@ -36,7 +36,7 @@ export default function ReferralPage() {
 
   if (!user || !referralStats) return <div>Loading...</div>
 
-  const referralLink = `https://fiatcurrency.com/signup?ref=${user.invite_code}`
+  const referralLink = `https://faitcurrency.online/signup?ref=${user.invite_code}`
 
   const copyToClipboard = () => {
     if (typeof navigator !== "undefined" && navigator.clipboard) {
