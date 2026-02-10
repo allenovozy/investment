@@ -15,7 +15,7 @@ export default function UpgradePage() {
 
   // Fetch user VIP & points
   useEffect(() => {
-    fetch("https://185.27.134.59/server/Api/vip.php", {
+    fetch("https://72.60.93.14/server/Api/vip.php", {
       method: "GET",
       credentials: "include",
     })
@@ -53,7 +53,7 @@ export default function UpgradePage() {
       payload.currency = selectedCurrency
     }
 
-    fetch("https://185.27.134.59/server/Api/vip.php", {
+    fetch("https://72.60.93.14/server/Api/vip.php", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       credentials: "include",
