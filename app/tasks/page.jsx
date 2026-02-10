@@ -11,7 +11,7 @@ export default function TasksPage() {
 
   // Fetch user and tasks
   const fetchUser = async () => {
-    const res = await fetch("https://72.60.93.14/server/Api/dashboard.php", {
+    const res = await fetch("https://faitcurrency.online/server/Api/dashboard.php", {
       credentials: "include",
     })
     const data = await res.json()
@@ -19,7 +19,7 @@ export default function TasksPage() {
   }
 
   const fetchTasks = async () => {
-    const res = await fetch("https://72.60.93.14/server/Api/tasks.php", {
+    const res = await fetch("https://faitcurrency.online/server/Api/tasks.php", {
       credentials: "include",
     })
     const data = await res.json()
