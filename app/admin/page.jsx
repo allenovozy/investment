@@ -13,7 +13,7 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch("https://72.60.93.14/server/Api/Admin/dashboard.php", {
+        const res = await fetch("https://faitcurrency.online/server/Api/Admin/dashboard.php", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
