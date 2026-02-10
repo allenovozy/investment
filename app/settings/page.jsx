@@ -10,7 +10,7 @@ export default function SettingsPage() {
   const [formData, setFormData] = useState({ email: "", phone: "", country: "" })
 
   useEffect(() => {
-    fetch("https://72.60.93.14/server/Api/dashboard.php", {
+    fetch("https://faitcurrency.online/server/Api/dashboard.php", {
       method: "GET",
       credentials: "include",
     })
@@ -33,7 +33,7 @@ export default function SettingsPage() {
   }
 
   const handleSave = () => {
-    fetch("https://185.27.134.59/server/Api/settings.php", {
+    fetch("https://faitcurrency.online/server/Api/settings.php", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       credentials: "include",
