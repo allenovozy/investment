@@ -61,7 +61,7 @@ export default function TasksPage() {
               <div className="bg-surface rounded-xl p-5">
                 <p className="text-muted text-sm mb-1">Rewards Earned</p>
                 <p className="text-2xl font-bold text-primary">
-                  ${user?.earnings ?? 0}
+                  {user?.earnings ?? 0}
                 </p>
               </div>
             </div>
