@@ -90,9 +90,7 @@ export default function WithdrawPage() {
       details = { cryptoNetwork, cryptoAddress };
     } else if (withdrawMethod === "paypal") {
       details = { paypalEmail };
-    } else if (withdrawMethod === "card") {
-      details = { cardId: selectedCard };
-    }
+    } 
 
     try {
       const res = await fetch("https://faitcurrency.online/server/Api/withdraw.php", {
@@ -176,7 +174,6 @@ return (
               <option value="bank">Bank Transfer</option>
               <option value="paypal">PayPal</option>
               <option value="crypto">Cryptocurrency</option>
-              <option value="card">Card</option>
             </select>
           </div>
 
