@@ -21,7 +21,7 @@ export default function AdminNotifications() {
             method: "GET",
             credentials: "include",
           }),
-          fetch("https://faitcurrency.online/server/Api/get_user.php", {
+          fetch("https://faitcurrency.online/server/Api/Admin/users/list.php", {
             method: "GET",
             credentials: "include",
           }),
@@ -206,5 +206,6 @@ export default function AdminNotifications() {
     </div>
   )
 }
+
 
 
