@@ -2,23 +2,24 @@ import {
   ArrowDownToLine,
   ArrowUpFromLine,
   Layers,
-  DollarSign
-} from "lucide-react"
+  DollarSign,
+  FileText
+} from "lucide-react";
 
 const typeIcons = {
   deposit: ArrowDownToLine,
   withdraw: ArrowUpFromLine,
   investment: Layers,
   earning: DollarSign,
-}
+};
 
 const statusColors = {
   successful: "text-success bg-success/10",
   pending: "text-warning bg-warning/10",
   failed: "text-error bg-error/10",
-}
+};
 
-export default function TransactionList({ transactions, title }) {
+export default function TransactionList({ transactions, title, onViewReceipt }) {
   /**
    * Supports:
    * - API response { success, transactions }
@@ -28,7 +29,7 @@ export default function TransactionList({ transactions, title }) {
     ? transactions
     : Array.isArray(transactions?.transactions)
     ? transactions.transactions
-    : []
+    : [];
 
   if (!txList.length) {
     return (
@@ -36,7 +37,7 @@ export default function TransactionList({ transactions, title }) {
         <h3 className="text-lg font-semibold mb-4">{title}</h3>
         <p>No transactions found</p>
       </div>
-    )
+    );
   }
 
   return (
@@ -45,9 +46,9 @@ export default function TransactionList({ transactions, title }) {
 
       <div className="flex flex-col gap-3">
         {txList.map((tx) => {
-          const Icon = typeIcons[tx.type] || DollarSign
+          const Icon = typeIcons[tx.type] || DollarSign;
           const statusClass =
-            statusColors[tx.status] || statusColors.pending
+            statusColors[tx.status] || statusColors.pending;
 
           return (
             <div
@@ -78,11 +79,21 @@ export default function TransactionList({ transactions, title }) {
                 >
                   {tx.status}
                 </span>
+
+                {/* ✅ View Receipt button for withdraw transactions */}
+                {tx.type === "withdraw" && tx.status === "successful" && (
+                  <button
+                    onClick={() => onViewReceipt?.(tx)}
+                    className="mt-2 flex items-center gap-1 text-xs text-primary hover:underline"
+                  >
+                    <FileText size={14} /> View Receipt
+                  </button>
+                )}
               </div>
             </div>
-          )
+          );
         })}
       </div>
     </div>
-  )
+  );
 }
