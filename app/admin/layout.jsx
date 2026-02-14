@@ -9,6 +9,7 @@ import {
   CheckSquare,
   LogOut,
   Menu,
+  bell,
   X,
   Wallet,
   TrendingUp,
