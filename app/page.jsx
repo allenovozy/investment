@@ -85,7 +85,7 @@ export default function LandingPage() {
                 />
               </span>
             </div>
-            <span className="font-semibold text-lg text-orange-light-300">FiatCurrency</span>
+            <span className="font-semibold text-lg text-orange-light-400">FiatCurrency</span>
           </div>
           <div className="flex items-center gap-4">
             <Link href="/login" className="text-sm text-muted hover:text-foreground transition-colors">
