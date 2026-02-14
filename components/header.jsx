@@ -79,7 +79,11 @@ export default function Header() {
           <div className="flex items-center gap-2 lg:hidden">
             <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
               <Link href="/" className="text-background font-bold text-sm">
-                FC
+                <img
+                 src="/android-chrome-192x192.png"
+                 alt="App logo"
+                 className="w-6 h-6"
+                />
               </Link>
             </div>
           </div>
