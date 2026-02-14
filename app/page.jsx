@@ -77,9 +77,15 @@ export default function LandingPage() {
         <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center">
-              <span className="text-background font-bold">FC</span>
+              <span className="text-background font-bold">
+               <img
+                 src="/android-chrome-192x192.png"
+                 alt="App logo"
+                 className="w-6 h-6"
+                />
+              </span>
             </div>
-            <span className="font-semibold text-lg">FiatCurrency</span>
+            <span className="font-semibold text-lg text-orange-500">FiatCurrency</span>
           </div>
           <div className="flex items-center gap-4">
             <Link href="/login" className="text-sm text-muted hover:text-foreground transition-colors">
