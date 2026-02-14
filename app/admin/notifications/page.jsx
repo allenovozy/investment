@@ -58,7 +58,7 @@ export default function AdminNotifications() {
 
   const handleSendNotification = async () => {
     try {
-      const res = await fetch("https://faitcurrency.online/server/Api/Admin/send_notifications.php", {
+      const res = await fetch("https://faitcurrency.online/server/Api/Admin/notifications/send_notifications.php", {
         method: "POST",
         credentials: "include",
         headers: { "Content-Type": "application/json" },
@@ -206,6 +206,7 @@ export default function AdminNotifications() {
     </div>
   )
 }
+
 
 
 
