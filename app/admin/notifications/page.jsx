@@ -10,7 +10,7 @@ export default function AdminNotifications() {
   useEffect(() => {
     const fetchNotifications = async () => {
       try {
-        const res = await fetch("https://faitcurrency.online/server/Api/notifications.php", {
+        const res = await fetch("https://faitcurrency.online/server/Api/get_notifications.php", {
           method: "GET",
           credentials: "include",
         })
@@ -90,3 +90,4 @@ export default function AdminNotifications() {
     </div>
   )
 }
+
