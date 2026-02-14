@@ -15,6 +15,7 @@ export default function Dashboard() {
   const [page, setPage] = useState(1)
   const [pages, setPages] = useState(1)
   const [loading, setLoading] = useState(true)
+  const [showPopup, setShowPopup] = useState(false)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -30,7 +31,6 @@ export default function Dashboard() {
           }),
         ])
 
-        // ✅ Check both responses for session expiry
         if (userRes.status === 401 || txRes.status === 401) {
           router.replace("/login")
           return
@@ -55,7 +55,6 @@ export default function Dashboard() {
           throw new Error(txData.message)
         }
 
-        // ✅ Normalize backend fields into frontend shape
         const u = userData.user
         setUser({
           id: u.id,
@@ -86,6 +85,9 @@ export default function Dashboard() {
 
         setTransactions(txData.transactions ?? [])
         setPages(txData.pages ?? 1)
+
+        // ✅ Show popup once user data is loaded
+        setShowPopup(true)
       } catch (err) {
         alert("Failed to load dashboard data: " + err.message)
       } finally {
@@ -106,53 +108,12 @@ export default function Dashboard() {
 
   if (!user) return null
 
-  // Construct balances array from normalized user data
   const balances = [
-    {
-      id: "usd",
-      name: "US Dollar",
-      symbol: "USD",
-      icon: "$",
-      balance: user.balances.usd,
-      maxProfit: user.maxProfit.usd,
-      color: "from-green-500/20 to-green-500/5",
-    },
-    {
-      id: "eur",
-      name: "Euro",
-      symbol: "EUR",
-      icon: "€",
-      balance: user.balances.eur,
-      maxProfit: user.maxProfit.eur,
-      color: "from-blue-500/20 to-blue-500/5",
-    },
-    {
-      id: "gbp",
-      name: "British Pound",
-      symbol: "GBP",
-      icon: "£",
-      balance: user.balances.gbp,
-      maxProfit: user.maxProfit.gbp,
-      color: "from-purple-500/20 to-purple-500/5",
-    },
-    {
-      id: "ngn",
-      name: "Naira",
-      symbol: "NGN",
-      icon: "₦",
-      balance: user.balances.ngn,
-      maxProfit: user.maxProfit.ngn,
-      color: "from-primary/20 to-primary/5",
-    },
-    {
-      id: "inr",
-      name: "Indian Rupee",
-      symbol: "INR",
-      icon: "₹",
-      balance: user.balances.inr,
-      maxProfit: user.maxProfit.inr,
-      color: "from-orange-500/20 to-orange-500/5",
-    },
+    { id: "usd", name: "US Dollar", symbol: "USD", icon: "$", balance: user.balances.usd, maxProfit: user.maxProfit.usd, color: "from-green-500/20 to-green-500/5" },
+    { id: "eur", name: "Euro", symbol: "EUR", icon: "€", balance: user.balances.eur, maxProfit: user.maxProfit.eur, color: "from-blue-500/20 to-blue-500/5" },
+    { id: "gbp", name: "British Pound", symbol: "GBP", icon: "£", balance: user.balances.gbp, maxProfit: user.maxProfit.gbp, color: "from-purple-500/20 to-purple-500/5" },
+    { id: "ngn", name: "Naira", symbol: "NGN", icon: "₦", balance: user.balances.ngn, maxProfit: user.maxProfit.ngn, color: "from-primary/20 to-primary/5" },
+    { id: "inr", name: "Indian Rupee", symbol: "INR", icon: "₹", balance: user.balances.inr, maxProfit: user.maxProfit.inr, color: "from-orange-500/20 to-orange-500/5" },
   ]
 
   return (
@@ -161,17 +122,12 @@ export default function Dashboard() {
         <h2 className="text-xl font-bold">Dashboard</h2>
 
         <BalanceDisplay balances={balances} />
-
         <QuickActions />
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <div>
-            <TransactionList
-              transactions={transactions}
-              title="Recent Transactions"
-            />
+            <TransactionList transactions={transactions} title="Recent Transactions" />
 
-            {/* Pagination Controls */}
             <div className="flex justify-between items-center mt-4">
               <button
                 disabled={page <= 1}
@@ -196,6 +152,25 @@ export default function Dashboard() {
           <InvestmentSummary userId={user.id} />
         </div>
       </div>
+
+      {/* ✅ Popup Notification */}
+      {showPopup && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-50">
+          <div className="bg-white rounded-lg shadow-lg p-6 max-w-md text-center">
+            <h3 className="text-lg font-bold mb-4">Important Notice</h3>
+            <p className="text-sm text-gray-700 mb-4">
+              Before making your first withdrawal, please ensure you have completed all required tasks. 
+              Additionally, review and comply with our company policies to avoid delays.
+            </p>
+            <button
+              onClick={() => setShowPopup(false)}
+              className="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark"
+            >
+              Got it
+            </button>
+          </div>
+        </div>
+      )}
     </DashboardLayout>
   )
 }
