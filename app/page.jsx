@@ -22,7 +22,7 @@ const slides = [
     desc: "Earn consistent returns with FiatCurrency",
   },
   {
-    src:"/images/image-1.jpeg",
+    src:"/images/image-2.jpeg",
     title:"We provide the best services..",
     desc:"Maximize your usage and earn more",
   },
