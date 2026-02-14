@@ -9,7 +9,7 @@ const _geistMono = Geist_Mono({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: 'fait currency',
   description: 'fait currency',
-  generator: 'v0.app',
+  generator: 'faitcurrency',
   icons: {
     icon: [
       {
