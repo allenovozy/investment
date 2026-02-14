@@ -36,7 +36,7 @@ export default function ReferralPage() {
 
   if (!user || !referralStats) return <div>Loading...</div>
 
-  const referralLink = `https://faitcurrency.online/signup?ref=${user.invite_code}`
+  const referralLink = `https://faitcurrency.site/signup?ref=${user.invite_code}`
 
   const copyToClipboard = () => {
     if (typeof navigator !== "undefined" && navigator.clipboard) {
