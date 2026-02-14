@@ -106,7 +106,7 @@ const Layout = ({ children, currentPage }) => {
           </button>
           <div className="topbar-right">
             <div className="user-badge">
-              <div className="avatar">Admin</div>
+              <div className="avatar"></div>
               <div className="user-info">
                 <div className="user-name">{user ? user.email : "Admin"}</div>
                 <div className="user-role">{user ? user.role : "Administrator"}</div>
