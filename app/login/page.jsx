@@ -52,7 +52,12 @@ export default function LoginPage() {
         {/* Header */}
         <div className="text-center mb-8">
           <div className="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center mx-auto mb-4">
-            <span className="text-background font-bold text-2xl">FC</span>
+            <span className="text-background font-bold text-2xl">
+            <img
+                 src="/android-chrome-192x192.png"
+                 alt="App logo"
+                 className="w-6 h-6"
+                /></span>
           </div>
           <h1 className="text-2xl md:text-3xl font-bold mb-2">Welcome Back</h1>
           <p className="text-muted">Sign in to your account</p>
