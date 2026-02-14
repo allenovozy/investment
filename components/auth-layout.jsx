@@ -6,7 +6,12 @@ export default function AuthLayout({ children }) {
       <header className="flex items-center justify-between p-4 border-b border-border">
         <Link href="/" className="flex items-center gap-2">
           <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-            <span className="text-background font-bold text-sm">FC</span>
+            <span className="text-background font-bold text-sm">
+              <img
+                 src="/android-chrome-192x192.png"
+                 alt="App logo"
+                 className="w-6 h-6"
+                /></span>
           </div>
           <span className="font-semibold hidden sm:inline">FiatCurrency</span>
         </Link>
