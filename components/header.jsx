@@ -53,7 +53,8 @@ export default function Header() {
       .catch((err) => console.error("Failed to load notifications:", err));
   }, []);
 
-  const unreadCount = notifications.filter((n) => n.unread).length;
+  // Instead of notif.unread, use !notif.read
+const unreadCount = notifications.filter((n) => !n.read).length;
 
   useEffect(() => {
     if (menuOpen) {
@@ -147,21 +148,21 @@ export default function Header() {
                 </div>
                 <div className="max-h-72 overflow-y-auto">
                   {notifications.map((notif) => (
-                    <div
+                   <div
                       key={notif.id}
                       className={`px-4 py-3 border-b border-border last:border-0 hover:bg-surface-light transition-colors ${
-                        notif.unread ? "bg-primary/5" : ""
+                        !notif.read ? "bg-primary/5" : ""
                       }`}
                     >
                       <div className="flex items-start gap-2">
                         <div className="flex-1">
                           <p className="text-sm font-medium">{notif.title}</p>
-                          <p className="text-xs text-muted mt-0.5">{notif.message}</p>
+                          <p className="text-xs text-muted mt-0.5">{notif.content}</p>
                           <p className="text-[10px] text-muted mt-1">
-                            {new Date(notif.created_at).toLocaleString()}
+                            {notif.time}
                           </p>
                         </div>
-                        {notif.unread && <div className="w-2 h-2 bg-primary rounded-full mt-1.5" />}
+                        {!notif.read && <div className="w-2 h-2 bg-primary rounded-full mt-1.5" />}
                       </div>
                     </div>
                   ))}
