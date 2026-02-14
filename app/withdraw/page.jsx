@@ -174,6 +174,8 @@ return (
               <option value="bank">Bank Transfer</option>
               <option value="paypal">PayPal</option>
               <option value="crypto">Cryptocurrency</option>
+              {/* Only render card option if user exists */}
+              {user && <option value="card">Card</option>}
             </select>
           </div>
 
@@ -240,6 +242,24 @@ return (
             </div>
           )}
 
+          {withdrawMethod === "card" && user && (
+            <div className="mb-6">
+              <label className="block text-sm text-muted mb-2">Select Saved Card</label>
+              <select
+                value={selectedCard}
+                onChange={(e) => setSelectedCard(e.target.value)}
+                className="w-full px-4 py-3 rounded-xl border border-border"
+              >
+                <option value="">Select Card</option>
+                {user.cards?.map((card) => (
+                  <option key={card.id} value={card.id}>
+                    {card.brand} ****{card.last4}
+                  </option>
+                ))}
+              </select>
+            </div>
+          )}
+
           {/* Amount */}
           <div className="mb-6">
             <label className="block text-sm text-muted mb-2">Amount</label>
@@ -267,7 +287,6 @@ return (
         <TransactionList
           transactions={transactions}
           title="Withdraw Transaction History"
-          // ✅ pass callback to open receipt modal
           onViewReceipt={(tx) => setSelectedTransaction(tx)}
         />
       </div>
