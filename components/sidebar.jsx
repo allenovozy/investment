@@ -48,7 +48,12 @@ export default function Sidebar({ isOpen, onToggle }) {
         {isOpen && (
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-              <span className="text-background font-bold text-sm">FC</span>
+              <span className="text-background font-bold text-sm">
+              <img
+                 src="/android-chrome-192x192.png"
+                 alt="App logo"
+                 className="w-6 h-6"
+                /></span>
             </div>
             <span className="font-semibold text-lg">FiatCurrency</span>
           </div>
