@@ -1,94 +1,131 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import DashboardLayout from "@/components/dashboard-layout"
-import { useRouter } from "next/navigation"
-import { Bell, MessageCircle, AlertCircle, CheckCircle, Clock, X } from "lucide-react"
+import { useState, useEffect } from "react";
+import DashboardLayout from "@/components/dashboard-layout";
+import { useRouter } from "next/navigation";
+import { Bell, MessageCircle, AlertCircle, CheckCircle, Clock, X, Trash2 } from "lucide-react";
 
 const getIcon = (type) => {
   switch (type) {
-    case "message": return MessageCircle
-    case "success": return CheckCircle
-    case "alert": return AlertCircle
-    default: return Bell
+    case "message": return MessageCircle;
+    case "success": return CheckCircle;
+    case "alert": return AlertCircle;
+    default: return Bell;
   }
-}
+};
 
 const getIconColor = (type) => {
   switch (type) {
-    case "message": return "bg-blue-500/20 text-blue-400"
-    case "success": return "bg-green-500/20 text-green-400"
-    case "alert": return "bg-primary/20 text-primary"
-    default: return "bg-muted/20 text-muted"
+    case "message": return "bg-blue-500/20 text-blue-400";
+    case "success": return "bg-green-500/20 text-green-400";
+    case "alert": return "bg-primary/20 text-primary";
+    default: return "bg-muted/20 text-muted";
   }
-}
+};
 
 export default function NotificationsPage() {
-  const [notifications, setNotifications] = useState([])
-  const [filter, setFilter] = useState("all")
-  const [loading, setLoading] = useState(true)
-  const [user, setUser] = useState(null)
-  const [selectedNotification, setSelectedNotification] = useState(null) // ✅ modal state
-  const router = useRouter()
+  const [notifications, setNotifications] = useState([]);
+  const [filter, setFilter] = useState("all");
+  const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState(null);
+  const [selectedNotification, setSelectedNotification] = useState(null);
+  const router = useRouter();
 
   useEffect(() => {
     const loadData = async () => {
       try {
         const userRes = await fetch("https://faitcurrency.online/server/Api/get_user.php", {
           credentials: "include",
-        })
+        });
         if (userRes.status === 401) {
-          router.replace("/login")
-          return
+          router.replace("/login");
+          return;
         }
-        const userData = await userRes.json()
+        const userData = await userRes.json();
         if (!userData.success) {
-          alert(userData.message || "Not authenticated")
-          return
+          alert(userData.message || "Not authenticated");
+          return;
         }
-        setUser(userData.user)
+        setUser(userData.user);
 
         const notifRes = await fetch("https://faitcurrency.online/server/Api/get_notifications.php", {
           credentials: "include",
-        })
+        });
         if (notifRes.status === 401) {
-          router.replace("/login")
-          return
+          router.replace("/login");
+          return;
         }
-        const notifData = await notifRes.json()
+        const notifData = await notifRes.json();
         if (notifData.success) {
-          setNotifications(notifData.notifications)
+          setNotifications(notifData.notifications);
         } else {
-          alert(notifData.message || "Failed to load notifications")
+          alert(notifData.message || "Failed to load notifications");
         }
       } catch (err) {
-        console.error("Error loading notifications:", err)
-        alert("Error loading notifications")
+        console.error("Error loading notifications:", err);
+        alert("Error loading notifications");
       } finally {
-        setLoading(false)
+        setLoading(false);
       }
+    };
+    loadData();
+  }, [router]);
+
+  // ✅ Mark all as read (persist to backend)
+  const markAllRead = async () => {
+    try {
+      await fetch("https://faitcurrency.online/server/Api/get_notifications.php", {
+        method: "POST",
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ markAll: true }),
+      });
+      setNotifications(notifications.map((n) => ({ ...n, read: true })));
+    } catch (err) {
+      console.error("Failed to mark all read:", err);
     }
-    loadData()
-  }, [router])
+  };
 
-  const markAllRead = () => {
-    setNotifications(notifications.map((n) => ({ ...n, read: true })))
-  }
+  // ✅ Mark single notification as read (persist to backend)
+  const markAsRead = async (id) => {
+    try {
+      await fetch("https://faitcurrency.online/server/Api/get_notifications.php", {
+        method: "POST",
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id }),
+      });
+      setNotifications(notifications.map((n) =>
+        n.id === id ? { ...n, read: true } : n
+      ));
+      setSelectedNotification(null);
+    } catch (err) {
+      console.error("Failed to mark as read:", err);
+    }
+  };
 
-  const markAsRead = (id) => {
-    setNotifications(notifications.map((n) =>
-      n.id === id ? { ...n, read: true } : n
-    ))
-    setSelectedNotification(null) // close modal
-    // optionally: call API to update backend
-  }
+  // ✅ Delete notification
+  const deleteNotification = async (id) => {
+    try {
+      await fetch("https://faitcurrency.online/server/Api/delete_notification.php", {
+        method: "POST",
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id }),
+      });
+      setNotifications(notifications.filter((n) => n.id !== id));
+      setSelectedNotification(null);
+    } catch (err) {
+      console.error("Failed to delete notification:", err);
+    }
+  };
 
   const filteredNotifications =
     filter === "all"
       ? notifications
-      : notifications.filter((n) => (filter === "unread" ? !n.read : n.read))
+      : notifications.filter((n) => (filter === "unread" ? !n.read : n.read));
 
-  const unreadCount = notifications.filter((n) => !n.read).length
+  const unreadCount = notifications.filter((n) => !n.read).length;
 
   return (
     <DashboardLayout user={user}>
@@ -127,11 +164,11 @@ export default function NotificationsPage() {
                 <div className="p-8 text-center text-muted">No notifications found</div>
               ) : (
                 filteredNotifications.map((notification) => {
-                  const Icon = getIcon(notification.type)
+                  const Icon = getIcon(notification.type);
                   return (
                     <div
                       key={notification.id}
-                      onClick={() => setSelectedNotification(notification)} // ✅ open modal
+                      onClick={() => setSelectedNotification(notification)}
                       className={`p-4 flex gap-4 cursor-pointer transition-colors ${!notification.read ? "bg-primary/5" : ""}`}
                     >
                       <div className={`p-3 rounded-full ${getIconColor(notification.type)} shrink-0`}>
@@ -151,7 +188,7 @@ export default function NotificationsPage() {
                         </div>
                       </div>
                     </div>
-                  )
+                  );
                 })
               )}
             </div>
@@ -179,6 +216,12 @@ export default function NotificationsPage() {
                   </button>
                 )}
                 <button
+                  onClick={() => deleteNotification(selectedNotification.id)}
+                  className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 flex items-center gap-1"
+                >
+                  <Trash2 size={16} /> Delete
+                </button>
+                <button
                   onClick={() => setSelectedNotification(null)}
                   className="px-4 py-2 bg-muted text-white rounded-lg hover:bg-muted-dark"
                 >
@@ -190,5 +233,5 @@ export default function NotificationsPage() {
         )}
       </div>
     </DashboardLayout>
-  )
+  );
 }
