@@ -243,24 +243,6 @@ return (
             </div>
           )}
 
-          {withdrawMethod === "card" && (
-            <div className="mb-6">
-              <label className="block text-sm text-muted mb-2">Select Saved Card</label>
-              <select
-                value={selectedCard}
-                onChange={(e) => setSelectedCard(e.target.value)}
-                className="w-full px-4 py-3 rounded-xl border border-border"
-              >
-                <option value="">Select Card</option>
-                {user.cards?.map((card) => (
-                  <option key={card.id} value={card.id}>
-                    {card.brand} ****{card.last4}
-                  </option>
-                ))}
-              </select>
-            </div>
-          )}
-
           {/* Amount */}
           <div className="mb-6">
             <label className="block text-sm text-muted mb-2">Amount</label>
@@ -335,4 +317,3 @@ return (
     )}
   </DashboardLayout>
 );
-}
