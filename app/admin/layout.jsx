@@ -9,7 +9,6 @@ import {
   CheckSquare,
   LogOut,
   Menu,
-  bell,
   X,
   Wallet,
   TrendingUp,
@@ -45,7 +44,7 @@ const Layout = ({ children, currentPage }) => {
     { id: "withdraw", path: "/admin/withdraw", label: "Withdrawals", icon: Wallet },
     { id: "referrals", path: "/admin/referrals", label: "Referrals", icon: Gift },
     { id: "tasks", path: "/admin/tasks", label: "Tasks", icon: CheckSquare },
-    { id: "notifications", path: "/admin/notifications", label: "Notifications", icon:bell },
+    { id: "notifications", path: "/admin/notifications", label: "Notifications", icon:CheckSquare },
     { id: "settings", path: "/admin/settings", label: "Settings", icon: Settings },
   ]
 
