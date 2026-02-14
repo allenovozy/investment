@@ -23,6 +23,9 @@ export default function WithdrawPage() {
   const [paypalEmail, setPaypalEmail] = useState("");
   const [selectedCard, setSelectedCard] = useState("");
 
+  // ✅ new state for receipt modal
+  const [selectedTransaction, setSelectedTransaction] = useState(null);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -122,156 +125,214 @@ export default function WithdrawPage() {
     }
   };
 
-  return (
-    <DashboardLayout user={user}>
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div>
-          <h1 className="text-2xl font-bold mb-6">Withdraw Funds</h1>
-          <BalanceDisplay balances={balances} />
+  // ✅ helper functions for receipt
+  const handlePrint = () => {
+    window.print();
+  };
 
-          <div className="bg-surface rounded-xl p-6 mb-6">
-            {/* Currency */}
+  const handleDownload = () => {
+    if (!selectedTransaction) return;
+    const element = document.createElement("a");
+    const file = new Blob([JSON.stringify(selectedTransaction, null, 2)], { type: "application/json" });
+    element.href = URL.createObjectURL(file);
+    element.download = `withdrawal_receipt_${selectedTransaction.id}.json`;
+    document.body.appendChild(element);
+    element.click();
+  };
+}
+
+return (
+  <DashboardLayout user={user}>
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div>
+        <h1 className="text-2xl font-bold mb-6">Withdraw Funds</h1>
+        <BalanceDisplay balances={balances} />
+
+        <div className="bg-surface rounded-xl p-6 mb-6">
+          {/* Currency */}
+          <div className="mb-6">
+            <label className="block text-sm text-muted mb-2">Currency</label>
+            <select
+              value={currency}
+              onChange={(e) => setCurrency(e.target.value)}
+              className="w-full px-4 py-3 rounded-xl border border-border"
+            >
+              {balances.map((b) => (
+                <option key={b.id} value={b.symbol}>
+                  {b.name}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {/* Method */}
+          <div className="mb-6">
+            <label className="block text-sm text-muted mb-2">Withdrawal Method</label>
+            <select
+              value={withdrawMethod}
+              onChange={(e) => setWithdrawMethod(e.target.value)}
+              className="w-full px-4 py-3 rounded-xl border border-border"
+            >
+              <option value="bank">Bank Transfer</option>
+              <option value="paypal">PayPal</option>
+              <option value="crypto">Cryptocurrency</option>
+              <option value="card">Card</option>
+            </select>
+          </div>
+
+          {/* Conditional fields */}
+          {withdrawMethod === "bank" && (
+            <>
+              <div className="mb-6">
+                <label className="block text-sm text-muted mb-2">Bank Name</label>
+                <input
+                  type="text"
+                  value={bankName}
+                  onChange={(e) => setBankName(e.target.value)}
+                  className="w-full px-4 py-3 rounded-xl border border-border"
+                />
+              </div>
+              <div className="mb-6">
+                <label className="block text-sm text-muted mb-2">Account Number</label>
+                <input
+                  type="text"
+                  value={accountNumber}
+                  onChange={(e) => setAccountNumber(e.target.value)}
+                  className="w-full px-4 py-3 rounded-xl border border-border"
+                />
+              </div>
+            </>
+          )}
+
+          {withdrawMethod === "crypto" && (
+            <>
+              <div className="mb-6">
+                <label className="block text-sm text-muted mb-2">Crypto Network</label>
+                <select
+                  value={cryptoNetwork}
+                  onChange={(e) => setCryptoNetwork(e.target.value)}
+                  className="w-full px-4 py-3 rounded-xl border border-border"
+                >
+                  <option value="">Select Network</option>
+                  <option value="BTC">Bitcoin</option>
+                  <option value="ETH">Ethereum</option>
+                  <option value="BNB">Binance Smart Chain</option>
+                </select>
+              </div>
+              <div className="mb-6">
+                <label className="block text-sm text-muted mb-2">Wallet Address</label>
+                <input
+                  type="text"
+                  value={cryptoAddress}
+                  onChange={(e) => setCryptoAddress(e.target.value)}
+                  className="w-full px-4 py-3 rounded-xl border border-border"
+                />
+              </div>
+            </>
+          )}
+
+          {withdrawMethod === "paypal" && (
             <div className="mb-6">
-              <label className="block text-sm text-muted mb-2">Currency</label>
+              <label className="block text-sm text-muted mb-2">PayPal Email</label>
+              <input
+                type="email"
+                value={paypalEmail}
+                onChange={(e) => setPaypalEmail(e.target.value)}
+                className="w-full px-4 py-3 rounded-xl border border-border"
+              />
+            </div>
+          )}
+
+          {withdrawMethod === "card" && (
+            <div className="mb-6">
+              <label className="block text-sm text-muted mb-2">Select Saved Card</label>
               <select
-                value={currency}
-                onChange={(e) => setCurrency(e.target.value)}
+                value={selectedCard}
+                onChange={(e) => setSelectedCard(e.target.value)}
                 className="w-full px-4 py-3 rounded-xl border border-border"
               >
-                {balances.map((b) => (
-                  <option key={b.id} value={b.symbol}>
-                    {b.name}
+                <option value="">Select Card</option>
+                {user.cards?.map((card) => (
+                  <option key={card.id} value={card.id}>
+                    {card.brand} ****{card.last4}
                   </option>
                 ))}
               </select>
             </div>
+          )}
 
-            {/* Method */}
-            <div className="mb-6">
-              <label className="block text-sm text-muted mb-2">Withdrawal Method</label>
-              <select
-                value={withdrawMethod}
-                onChange={(e) => setWithdrawMethod(e.target.value)}
-                className="w-full px-4 py-3 rounded-xl border border-border"
-              >
-                <option value="bank">Bank Transfer</option>
-                <option value="paypal">PayPal</option>
-                <option value="crypto">Cryptocurrency</option>
-                <option value="card">Card</option>
-              </select>
-            </div>
+          {/* Amount */}
+          <div className="mb-6">
+            <label className="block text-sm text-muted mb-2">Amount</label>
+            <input
+              type="number"
+              value={amount}
+              onChange={(e) => setAmount(e.target.value)}
+              className="w-full px-4 py-3 rounded-xl border border-border"
+            />
+          </div>
 
-            {/* Conditional fields */}
-            {withdrawMethod === "bank" && (
-              <>
-                <div className="mb-6">
-                  <label className="block text-sm text-muted mb-2">Bank Name</label>
-                  <input
-                    type="text"
-                    value={bankName}
-                    onChange={(e) => setBankName(e.target.value)}
-                    className="w-full px-4 py-3 rounded-xl border border-border"
-                  />
-                </div>
-                <div className="mb-6">
-                  <label className="block text-sm text-muted mb-2">Account Number</label>
-                  <input
-                    type="text"
-                    value={accountNumber}
-                    onChange={(e) => setAccountNumber(e.target.value)}
-                    className="w-full px-4 py-3 rounded-xl border border-border"
-                  />
-                </div>
-              </>
+          {/* Submit button */}
+          <button
+            onClick={handleWithdraw}
+            disabled={!amount || parseFloat(amount) <= 0}
+            className="w-full py-4 bg-primary text-background font-semibold rounded-xl hover:bg-primary-dark transition-colors disabled:opacity-50"
+          >
+            Request Withdrawal
+          </button>
+        </div>
+      </div>
+
+      {/* Transaction history */}
+      <div>
+        <TransactionList
+          transactions={transactions}
+          title="Withdraw Transaction History"
+          // ✅ pass callback to open receipt modal
+          onViewReceipt={(tx) => setSelectedTransaction(tx)}
+        />
+      </div>
+    </div>
+
+    {/* ✅ Receipt Modal */}
+    {selectedTransaction && (
+      <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+        <div className="bg-white rounded-xl shadow-lg w-full max-w-md p-6">
+          <div className="flex justify-between items-center mb-4">
+            <h2 className="text-xl font-bold">Withdrawal Receipt</h2>
+            <button onClick={() => setSelectedTransaction(null)} className="text-muted hover:text-foreground">
+              <X size={20} />
+            </button>
+          </div>
+
+          <div className="space-y-2 text-sm">
+            <p><strong>Transaction ID:</strong> {selectedTransaction.id}</p>
+            <p><strong>Status:</strong> {selectedTransaction.status}</p>
+            <p><strong>Amount:</strong> {selectedTransaction.amount} {selectedTransaction.currency}</p>
+            <p><strong>Method:</strong> {selectedTransaction.method}</p>
+            <p><strong>Date:</strong> {selectedTransaction.date}</p>
+            {selectedTransaction.details && (
+              <p><strong>Details:</strong> {JSON.stringify(selectedTransaction.details)}</p>
             )}
+          </div>
 
-            {withdrawMethod === "crypto" && (
-              <>
-                <div className="mb-6">
-                  <label className="block text-sm text-muted mb-2">Crypto Network</label>
-                  <select
-                    value={cryptoNetwork}
-                    onChange={(e) => setCryptoNetwork(e.target.value)}
-                    className="w-full px-4 py-3 rounded-xl border border-border"
-                  >
-                    <option value="">Select Network</option>
-                    <option value="BTC">Bitcoin</option>
-                    <option value="ETH">Ethereum</option>
-                    <option value="BNB">Binance Smart Chain</option>
-                  </select>
-                </div>
-                <div className="mb-6">
-                  <label className="block text-sm text-muted mb-2">Wallet Address</label>
-                  <input
-                    type="text"
-                    value={cryptoAddress}
-                    onChange={(e) => setCryptoAddress(e.target.value)}
-                    className="w-full px-4 py-3 rounded-xl border border-border"
-                  />
-                </div>
-              </>
-            )}
-
-            {withdrawMethod === "paypal" && (
-              <div className="mb-6">
-                <label className="block text-sm text-muted mb-2">PayPal Email</label>
-                <input
-                  type="email"
-                  value={paypalEmail}
-                  onChange={(e) => setPaypalEmail(e.target.value)}
-                  className="w-full px-4 py-3 rounded-xl border border-border"
-                />
-              </div>
-            )}
-
-            {withdrawMethod === "card" && (
-              <div className="mb-6">
-                <label className="block text-sm text-muted mb-2">Select Saved Card</label>
-                <select
-                  value={selectedCard}
-                  onChange={(e) => setSelectedCard(e.target.value)}
-                  className="w-full px-4 py-3 rounded-xl border border-border"
-                >
-                  <option value="">Select Card</option>
-                  {user.cards?.map((card) => (
-                    <option key={card.id} value={card.id}>
-                      {card.brand} ****{card.last4}
-                    </option>
-                  ))}
-                </select>
-                           </div>
-            )}
-
-            {/* Amount */}
-            <div className="mb-6">
-              <label className="block text-sm text-muted mb-2">Amount</label>
-              <input
-                type="number"
-                value={amount}
-                onChange={(e) => setAmount(e.target.value)}
-                className="w-full px-4 py-3 rounded-xl border border-border"
-              />
-            </div>
-
-            {/* Submit button */}
+          <div className="flex justify-end gap-2 mt-6">
             <button
-              onClick={handleWithdraw}
-              disabled={!amount || parseFloat(amount) <= 0}
-              className="w-full py-4 bg-primary text-background font-semibold rounded-xl hover:bg-primary-dark transition-colors disabled:opacity-50"
+              onClick={handlePrint}
+              className="px-4 py-2 bg-primary text-white rounded-lg flex items-center gap-1"
             >
-              Request Withdrawal
+              <Printer size={16} /> Print
+            </button>
+            <button
+              onClick={handleDownload}
+              className="px-4 py-2 bg-green-600 text-white rounded-lg flex items-center gap-1"
+            >
+              <Download size={16} /> Download
             </button>
           </div>
         </div>
-
-        {/* Transaction history */}
-        <div>
-          <TransactionList
-            transactions={transactions}
-            title="Withdraw Transaction History"
-          />
-        </div>
       </div>
-    </DashboardLayout>
-  );
+    )}
+  </DashboardLayout>
+);
 }
