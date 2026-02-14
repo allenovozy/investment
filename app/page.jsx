@@ -21,6 +21,11 @@ const slides = [
     title: "Grow Wealth Faster",
     desc: "Earn consistent returns with FiatCurrency",
   },
+  {
+    src:"images/image-1.jpeg",
+    title:"We provide the best services..",
+    desc:"Maximize your usage and earn more",
+  },
 ]
 
 function HeroSlideshow() {
