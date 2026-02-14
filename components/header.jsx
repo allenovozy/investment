@@ -231,7 +231,7 @@ export default function Header() {
                 <XCircle size={20} />
               </button>
             </div>
-            <nav className="px-4 py-3 space-y-2">
+            <nav className="px-4 py-3 space-y-2 bg-white/50">
               <Link href="/deposit-history" className="block py-2 text-sm hover:text-primary">Deposit Historys</Link>
               <Link href="/leaderboard" className="block py-2 text-sm hover:text-primary">Leaderboard</Link>
               <Link href="/payment-methods" className="block py-2 text-sm hover:text-primary">Payment methods</Link>
