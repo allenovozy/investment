@@ -21,7 +21,6 @@ export default function WithdrawPage() {
   const [cryptoNetwork, setCryptoNetwork] = useState("");
   const [cryptoAddress, setCryptoAddress] = useState("");
   const [paypalEmail, setPaypalEmail] = useState("");
-  const [selectedCard, setSelectedCard] = useState("");
 
   // ✅ new state for receipt modal
   const [selectedTransaction, setSelectedTransaction] = useState(null);
@@ -90,7 +89,7 @@ export default function WithdrawPage() {
       details = { cryptoNetwork, cryptoAddress };
     } else if (withdrawMethod === "paypal") {
       details = { paypalEmail };
-    } 
+    }
 
     try {
       const res = await fetch("https://faitcurrency.online/server/Api/withdraw.php", {
@@ -137,7 +136,6 @@ export default function WithdrawPage() {
     document.body.appendChild(element);
     element.click();
   };
-}
 
 return (
   <DashboardLayout user={user}>
