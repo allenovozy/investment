@@ -179,41 +179,32 @@ export default function InvestmentsPage() {
         </div>
 
         {/* Tabs */}
-        <div className="flex gap-4 mb-6">
+       {/* Categories displayed as buttons */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
           {Object.keys(investmentCategories).map(category => (
-            <button
-              key={category}
-              onClick={() => setActiveTab(category)}
-              className={`px-4 py-2 rounded-lg ${
-                activeTab === category ? "bg-primary text-white" : "bg-surface text-muted"
-              }`}
-            >
-              {category}
-            </button>
-          ))}
-        </div>
-
-        {/* Plans */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {investmentCategories[activeTab]?.map(plan => (
-            <div
-              key={plan.id}
-              className="border border-border rounded-xl p-4 flex flex-col justify-between"
-            >
-              <div>
-                <h2 className="text-lg font-semibold">{plan.name}</h2>
-                <p className="text-sm text-muted">Price: ₦{plan.price.toLocaleString()}</p>
-                <p className="text-sm text-muted">ROI: {plan.roi}</p>
-                <p className="text-sm text-muted">
-                  Duration: {plan.duration_days || plan.duration} days
-                </p>
-              </div>
-              <button
-                onClick={() => handleInvest(plan)}
-                className="mt-4 px-4 py-2 bg-primary text-white rounded-lg"
-              >
-                Invest
-              </button>
+            <div key={category} className="flex flex-col gap-4">
+              <h2 className="text-lg font-bold capitalize">{category}</h2>
+              {investmentCategories[category]?.map(plan => (
+                <div
+                  key={plan.id}
+                  className="border border-border rounded-xl p-4 flex flex-col justify-between"
+                >
+                  <div>
+                    <h3 className="text-base font-semibold">{plan.name}</h3>
+                    <p className="text-sm text-muted">Price: ₦{plan.price.toLocaleString()}</p>
+                    <p className="text-sm text-muted">ROI: {plan.roi}</p>
+                    <p className="text-sm text-muted">
+                      Duration: {plan.duration_days || plan.duration} days
+                    </p>
+                  </div>
+                  <button
+                    onClick={() => handleInvest(plan)}
+                    className="mt-4 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark"
+                  >
+                    Invest
+                  </button>
+                </div>
+              ))}
             </div>
           ))}
         </div>
