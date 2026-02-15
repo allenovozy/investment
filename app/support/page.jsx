@@ -25,7 +25,7 @@ export default function SupportPage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <a
-              href="#"
+              href="https://direct.lc.chat/19507746/"
               className="flex items-center gap-4 p-4 bg-surface-light rounded-xl hover:bg-border transition-colors"
             >
               <div className="p-3 bg-primary/20 rounded-xl">
