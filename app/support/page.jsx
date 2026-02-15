@@ -38,7 +38,7 @@ export default function SupportPage() {
             </a>
 
             <a
-              href="https://t.me/fiatcurrency"
+              href="https://t.me/faitcurrency"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-4 p-4 bg-surface-light rounded-xl hover:bg-border transition-colors"
@@ -48,7 +48,7 @@ export default function SupportPage() {
               </div>
               <div>
                 <p className="font-medium">Telegram</p>
-                <p className="text-sm text-muted">@fiatcurrency</p>
+                <p className="text-sm text-muted">@faitcurrency</p>
               </div>
             </a>
           </div>
